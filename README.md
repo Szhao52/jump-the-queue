@@ -1,7 +1,7 @@
 # Jump The Queue
 
-Source code and documentation for the _JumpTheQueue_ tutorial application.  
-Documentation is provided in the form of a step-by-step guide suited for new devonfw users.
+## Source code and documentation for the _JumpTheQueue_ tutorial application.  
+#Documentation is provided in the form of a step-by-step guide suited for new devonfw users.
 
 ## **Building application on local**
 
@@ -11,7 +11,7 @@ To build application on local execute below commands:
 
 2. Once ide setup is done. Clone jump-the-queue application in workspace:
    
-      `git clone https://github.com/devonfw/jump-the-queue.git`
+      --`git clone https://github.com/devonfw/jump-the-queue.git`
       
 3. ** Building and running Jump-the-queue backend:**
 
@@ -20,12 +20,12 @@ To build application on local execute below commands:
     To run BE using jar navigate to `jump-the-queue\java\jtqj\server\target` from command line and execute `java -jar jtqj-server-bootified.war` <br/>
     OR</br>
     Alternatively, you can launch application using mvn spring-boot:run command. Navigate to `jump-the-queue\java\jtqj\core` folder from command line and execute `mvn spring-boot:run`
-    
+ added and test    
 4.  **Build Jump-the-queue front-end:**
-    
-    To build Jump-the-queue front-end navigate to `jump-the-queue\angular` folder from command line and execute command `yarn install`.
+    Install first node
+    To build Jump-the-queue front-end navigate to `jump-the-queue\angular` folder from command line and execute command `yarn install --force`.
     To launch jump-the-queue FE navigate to `jump-the-queue\angular` folder from command line and execute `yarn start`.
-	Alternatively, you can use npm if you face issues with yarn (build using `npm install` and launch using `npm start`).
+	Alternatively, you can use npm if you face issues with yarn (build using `npm install --force` and launch using `npm start`).
     
 5.  **Access the application.**
 
