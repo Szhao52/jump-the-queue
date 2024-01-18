@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    tools{
+        docker 'docker'
+    }
+    stages{
+        stage('Check docker'){
+            steps{
+                sh 'docker -v'
+            }
+        }
+    }
+}
