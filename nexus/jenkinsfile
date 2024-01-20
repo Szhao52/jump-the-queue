@@ -3,10 +3,10 @@ pipeline {
     stages{
         stage('Build Angular'){
             steps{
-                
-                    sh 'docker build -t angular-app /angular'
+                script{
+                    sh 'docker build -t angular-app ./angular'
                     sh 'docker images'
-                
+                }
             }
         }
     }
