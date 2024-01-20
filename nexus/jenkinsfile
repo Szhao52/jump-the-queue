@@ -1,13 +1,11 @@
 pipeline {
     agent any
     stages{
-        steps{
-            stage('Build Angular'){
+        stage('Build Angular'){
+            steps{
                 dir('angular'){
-                    steps{
-                        sh 'docker build -t angular-app'
-                        sh 'docker images'
-                    }
+                    sh 'docker build -t angular-app'
+                    sh 'docker images'
                 }
             }
         }
