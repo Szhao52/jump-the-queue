@@ -1,12 +1,36 @@
 pipeline {
     agent any
-    stages{
-        stage('Build Angular'){
-            steps{
+    environment {
+        NEXUS_CREDS = credentials('nexuscredentials')
+        NEXUS_DOCKER_REPO = 'localhost:8082'
+    }
+    stages {
+        stage('Docker build & tag') {
+            steps {
                 script{
-                    sh 'docker build -t angular-app ./angular'
-                    sh 'docker images'
+                    sh 'docker build -t angular-app:$BUILD_NUMBER ./angular'
+                    sh 'docker build -t springboot-app:$BUILD_NUMBER ./java/jtqj'
+                    sh 'docker tag  angular-app:$BUILD_NUMBER $NEXUS_DOCKER_REPO/angular-app:$BUILD_NUMBER'
+                    sh 'docker tag springboot-app:$BUILD_NUMBER $NEXUS_DOCKER_REPO/springboot-app:$BUILD_NUMBER'
                 }
+            }
+        }
+        stage('Docker Login') {
+            steps {
+                echo 'Nexus Docker Repository Login'
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'nexuscredentials', usernameVariable: 'USER', passwordVariable: 'PASS' )]){
+                       sh ' echo $PASS | docker login -u $USER --password-stdin $NEXUS_DOCKER_REPO'
+                    }
+                   
+                }
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                echo 'Pushing Imgaet to docker hub'
+                sh 'docker push $NEXUS_DOCKER_REPO/angular-app:$BUILD_NUMBER'
+                sh 'docker push $NEXUS_DOCKER_REPO/springboot-app:$BUILD_NUMBER'  
             }
         }
     }
