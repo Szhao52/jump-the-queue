@@ -1,5 +1,6 @@
 name: Build and Push Dockerfile
-on: push
+on: 
+  workflow_dispatch:
 jobs: 
   build:
     if: ${{github.repository == 'devonfw/jump-the-queue'}}
