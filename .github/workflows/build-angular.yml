@@ -24,5 +24,5 @@ jobs:
         with:
           args: >
             -Dsonar.organization=szhao52
-            -Dsonar.proyectKey=jump-the-queue
+            -Dsonar.projectKey=jump-the-queue
             
