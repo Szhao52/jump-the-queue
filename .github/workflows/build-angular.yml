@@ -2,7 +2,7 @@ name: CI Build for angular
 on: [push, pull_request]
 jobs:
   build:
-    if: ${{github.repository == 'devonfw/jump-the-queue'}}
+    if: ${{github.repository == 'Szhao52/jump-the-queue'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -10,5 +10,5 @@ jobs:
       - name: build
         run: |
           cd angular
-          yarn install
+          yarn install --force
           npm run build
