@@ -21,4 +21,8 @@ jobs:
         run: |
           cd java/jtqj
           mvn test
-
+      - name: Sonar Scanner
+        uses: sonarsource/sonarcloud-github-action@feature/pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

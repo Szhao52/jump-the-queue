@@ -1,4 +1,4 @@
-name: CI Build & test for angular
+name: CI Build & Test for Angular
 on: [push, pull_request]
 jobs:
   build:
@@ -7,12 +7,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: build 
+      - name: Build 
         run: |
           cd angular
           yarn install --force
           npm run build
-      - name: Test code
+      - name: Test 
         run: |
           cd angular
           yarn test-headless
+      - name: Sonar Scanner
+        uses: sonarsource/sonarcloud-github-action@feature/pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
