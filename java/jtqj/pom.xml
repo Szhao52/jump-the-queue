@@ -15,8 +15,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <devonfw.test.excluded.groups>com.devonfw.module.test.common.api.category.CategorySystemTest</devonfw.test.excluded.groups>
     <jackson.version>2.12.2</jackson.version> <!-- Overriding Jackson for fixing vulnerabilities -->
-    <sonar.organization>szhao52</sonar.organization>
-    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <modules>
