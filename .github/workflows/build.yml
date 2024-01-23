@@ -1,8 +1,8 @@
-name: CI Build
+name: CI Build & Test Springboot
 on: [push, pull_request]
 jobs:
   build:
-    if: ${{github.repository == 'devonfw/jump-the-queue'}}
+    if: ${{github.repository == 'SZhao52/jump-the-queue'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,4 +17,8 @@ jobs:
         run: |
           cd java/jtqj
           mvn install
+      - name: Test project with Maven
+        run: |
+          cd java/jtqj
+          mvn test
 
