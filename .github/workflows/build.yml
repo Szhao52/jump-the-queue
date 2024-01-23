@@ -1,5 +1,6 @@
 name: CI Build & Test Springboot
-on: [push, pull_request]
+on: 
+  workflow_dispatch:
 jobs:
   build:
     if: ${{github.repository == 'SZhao52/jump-the-queue'}}
