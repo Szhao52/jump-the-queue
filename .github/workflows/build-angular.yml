@@ -13,4 +13,6 @@ jobs:
           yarn install --force
           npm run build
       - name: Test code
-        run: yarn test-headless
+        run: |
+          cd angular
+          yarn test-headless
