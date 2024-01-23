@@ -1,0 +1,9 @@
+name: Build and Push Dockerfile
+on: push
+jobs: 
+  build:
+    if: ${{github.repository == 'devonfw/jump-the-queue'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build images    
+        uses: actions/checkout@v4           

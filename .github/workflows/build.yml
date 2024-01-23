@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Set up JDK
@@ -22,7 +22,11 @@ jobs:
           cd java/jtqj
           mvn test
       - name: Sonar Scanner
-        run:  mvn verify sonar:sonar -Dsonar.projectKey=jump-the-queue -Dsonar.organization=szhao52 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN"
+        uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=szhao52
+            -Dsonar.proyectkey=jump-the-queue
