@@ -22,11 +22,8 @@ jobs:
           cd java/jtqj
           mvn test
       - name: Sonar Scanner
-        uses: sonarsource/sonarcloud-github-action@master
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Szhao52_jump-the-queue
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=szhao52
-            -Dsonar.projectKey=jump-the-queue
+        
