@@ -1,5 +1,6 @@
 name: CI Build & Test for Angular
-on: [push, pull_request]
+on: 
+  workflow_dispatch:
 jobs:
   build:
     if: ${{github.repository == 'Szhao52/jump-the-queue'}}
