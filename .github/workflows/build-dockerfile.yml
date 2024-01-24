@@ -15,7 +15,7 @@ jobs:
           - context: ./angular
             dockerfile: ./angular/Dockerfile
             image: ghrcr.io/szhao52/jtq-angular
-          - context: ./java/jtqj
+          - context: ./java/jtqj           
             dockerfile: ./java/jtqj/Dockerfile
             image: ghrcr.io/szhao52/jtq-springboot  
     permissions:
@@ -39,7 +39,7 @@ jobs:
           images: ${{ matrix.image }} 
       
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
           context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
