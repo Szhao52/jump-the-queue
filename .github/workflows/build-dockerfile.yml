@@ -13,9 +13,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./angular/Dockerfile
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-angular
+            image: ghrcr.io/szhao52/jtq-angular
           - dockerfile: ./java/jtqj/Dockerfile
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-springboot     
+            image: ghrcr.io/szhao52/jtq-springboot     
     permissions:
       contents: read
       packages: write 
