@@ -13,10 +13,10 @@ jobs:
         include:
           - context: ./angular
             dockerfile: ./angular/Dockerfile
-            image_suffix: -angular-app
+            image_suffix: angular-app
           - context: ./java/jtqj           
             dockerfile: ./java/jtqj/Dockerfile
-            image_suffix: -springboot-app
+            image_suffix: springboot-app
     permissions:
       contents: read
       packages: write 
@@ -35,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.image_suffix }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ matrix.image_suffix }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
