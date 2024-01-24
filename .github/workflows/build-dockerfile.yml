@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - dockerfile: ./angular/Dockerfile
+          - dockerfile: ./angular
             image: ghrcr.io/szhao52/jtq-angular
-          - dockerfile: ./java/jtqj/Dockerfile
+          - dockerfile: ./java/jtqj
             image: ghrcr.io/szhao52/jtq-springboot     
     permissions:
       contents: read
@@ -39,7 +39,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: .
+          context: ${{ matrix.dockerfile }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
