@@ -9,6 +9,13 @@ jobs:
   build:
     if: ${{github.repository == 'Szhao52/jump-the-queue'}}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - dockerfile: ./angular/Dockerfile
+            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-angular
+          - dockerfile: ./java/jtqj/Dockerfile
+            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-springboot     
     permissions:
       contents: read
       packages: write 
@@ -27,12 +34,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} 
+          images: ${{ matrix.image }} 
       
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: ./angular
+          context: .
+          file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
