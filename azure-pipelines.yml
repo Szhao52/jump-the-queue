@@ -5,7 +5,8 @@
 
 trigger:
   branches:
-    feature/pipeline
+   include:
+   - feature/pipeline
 
 pool:
   vmImage: ubuntu-latest
