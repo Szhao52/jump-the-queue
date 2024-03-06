@@ -1,5 +1,6 @@
 name: Build and Push Dockerfile
 on:
+    workflow_dispatch:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: szhao52/jump-the-queue #problems with uppercase
