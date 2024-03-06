@@ -23,5 +23,5 @@ steps:
   displayName: 'npm install and build'
 - script: |
     cd angular
-    yarn test-headless
+    npm test-headless
   displayName: 'test'
