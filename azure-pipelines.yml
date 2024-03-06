@@ -23,5 +23,5 @@ steps:
   displayName: 'npm install and build'
 - script: |
     cd angular
-    npm test-headless
+    npm run test-headless
   displayName: 'test'
