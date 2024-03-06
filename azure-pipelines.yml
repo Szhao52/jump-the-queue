@@ -6,8 +6,7 @@
 trigger:
 - feature/pipeline
 
-pool:
-  vmImage: ubuntu-latest
+pool: szxlocalpool
 
 steps:
 - task: NodeTool@0
