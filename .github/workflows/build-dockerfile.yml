@@ -1,5 +1,5 @@
 name: Build and Push Dockerfile
-on: [push, pull_request]
+on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: szhao52/jump-the-queue #problems with uppercase
