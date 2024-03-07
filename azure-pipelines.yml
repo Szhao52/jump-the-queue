@@ -21,10 +21,19 @@ steps:
     npm install --global yarn
     yarn install --force
     npm run build
-    yarn test-headless
-  displayName: 'npm install, build & test'
+  displayName: 'npm install and build'
 
 - script: |
     cd angular
     yarn test-headless
+  displayName: 'Test'
+
+- script: |
+    cd ./java/jtqj
+    mvn install
+  displayName: 'mvn install'
+
+- script: | 
+    cd java/jtqj
+    mvn test
   displayName: 'Test'
