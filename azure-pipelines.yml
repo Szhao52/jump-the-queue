@@ -38,6 +38,9 @@ steps:
     mvn test
   displayName: 'Test'
 
+- checkout: self
+  fetchDepth: 0
+
 - task: SonarCloudAnalyze@1
   inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
+    jdkversion: 'JAVA_HOME'
