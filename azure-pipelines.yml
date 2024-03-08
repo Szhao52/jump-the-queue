@@ -9,34 +9,29 @@ steps:
 - checkout: self
   fetchDepth: 0
 
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.11.1'
+  displayName: 'Install Node.js'
+
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'sonarcloudserv'
     organization: 'timothepaty'
-    scannerMode: 'Other'
-    extraProperties: |
-      sonar.projectKey=timothepaty_jtqj
-      sonar.projectName=jtqj
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'java/jtqj/pom.xml'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.17'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'pom'
+    scannerMode: 'CLI'
+    configMode: 'file'
 
 - script: |
-    cd java/jtqj
-    mvn install
-  displayName: 'mvn install'
+    npm install -g @angular/cli
+    cd angular
+    npm install --global yarn
+    yarn install --force
+    npm run build
+  displayName: 'npm install and build'
 
-- script: | 
-    cd java/jtqj
-    mvn test
+- script: |
+    cd angular
+    yarn test-headless
   displayName: 'Test'
 
 - task: SonarCloudAnalyze@1
