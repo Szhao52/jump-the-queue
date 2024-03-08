@@ -22,11 +22,12 @@ steps:
     mavenPomFile: 'java/jtqj/pom.xml'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'latest'    
+    sqMavenPluginVersionChoice: 'pom'
 
 - script: |
     cd ./java/jtqj
@@ -39,6 +40,8 @@ steps:
   displayName: 'Test'
 
 - task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
 
 - task: SonarCloudPublish@1
   inputs:
