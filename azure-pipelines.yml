@@ -8,7 +8,7 @@ pool:
 steps:
 - checkout: self
   fetchDepth: 0
-
+##front 
 - task: NodeTool@0
   inputs:
     versionSpec: '20.11.1'
@@ -32,6 +32,38 @@ steps:
 - script: |
     cd angular
     yarn test-headless
+  displayName: 'Test'
+
+- task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+    
+# Back
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloudserv'
+    organization: 'timothepaty'
+    scannerMode: 'Other'
+    extraProperties: |
+      sonar.projectKey=timothepaty_jtqj
+      sonar.projectName=jtqj
+
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'java/jtqj/pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'pom'
+
+
+- script: | 
+    cd java/jtqj
+    mvn test
   displayName: 'Test'
 
 - task: SonarCloudAnalyze@1
