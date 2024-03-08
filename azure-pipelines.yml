@@ -1,7 +1,3 @@
-# Node.js with Angular
-# Build a Node.js project that uses Angular.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
 - feature/pipeline
@@ -10,23 +6,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
+- checkout: self
+  fetchDepth: 0
+
+- task: SonarCloudPrepare@1
   inputs:
-    versionSpec: '20.11.1'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install -g @angular/cli
-    cd angular
-    npm install --global yarn
-    yarn install --force
-    npm run build
-  displayName: 'npm install and build'
-
-- script: |
-    cd angular
-    yarn test-headless
-  displayName: 'Test'
+    SonarCloud: 'sonarcloudserv'
+    organization: 'timothepaty'
+    scannerMode: 'Other'
+    extraProperties: |
+      sonar.projectKey=timothepaty_jtqj
+      sonar.projectName=jtqj
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'java/jtqj/pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'pom'
 
 - script: |
     cd java/jtqj
@@ -37,3 +38,11 @@ steps:
     cd java/jtqj
     mvn test
   displayName: 'Test'
+
+- task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
