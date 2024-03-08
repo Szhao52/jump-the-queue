@@ -50,5 +50,7 @@ steps:
   displayName: 'Test'
 
 - task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
   inputs:
-    jdkversion: 'JAVA_HOME'
+    pollingTimeoutSec: '300'
