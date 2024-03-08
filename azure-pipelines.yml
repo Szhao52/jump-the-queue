@@ -19,7 +19,7 @@ steps:
       sonar.projectName=jtqj
 - task: Maven@4
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'java/jtqj/pom.xml'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
@@ -27,7 +27,7 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
     sqMavenPluginVersionChoice: 'latest'    
-      
+
 - script: |
     cd ./java/jtqj
     mvn install
