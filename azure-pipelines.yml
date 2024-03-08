@@ -29,7 +29,7 @@ steps:
   displayName: 'Test'
 
 - script: |
-    cd ./java/jtqj
+    cd java/jtqj
     mvn install
   displayName: 'mvn install'
 
