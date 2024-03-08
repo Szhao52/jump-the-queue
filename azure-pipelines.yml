@@ -17,15 +17,6 @@ steps:
     versionSpec: '20.11.1'
   displayName: 'Install Node.js'
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'sonarcloudserv'
-    organization: 'timothepaty'
-    scannerMode: 'Other'
-    extraProperties: |
-      sonar.projectKey=timothepaty_jtqj
-      sonar.projectName=jtqj
-      
 - script: |
     npm install -g @angular/cli
     cd angular
@@ -39,6 +30,15 @@ steps:
     yarn test-headless
   displayName: 'Test'
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloudserv'
+    organization: 'timothepaty'
+    scannerMode: 'Other'
+    extraProperties: |
+      sonar.projectKey=timothepaty_jtqj
+      sonar.projectName=jtqj
+      
 - script: |
     cd ./java/jtqj
     mvn install
