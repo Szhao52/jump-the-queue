@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: springboot-app
+  labels: 
+    app: springboot-app
+  
+spec:
+  containers:
+    - name: springboot-app
+      image: szhao52/spring-boot-app
+      ports:
+         - containerPort: 8081
+

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: angular-app
+  labels:
+    name: angular-app
+    app: angular-app
+
+spec:
+   containers:
+      - name: angular-app
+        image: szhao52/angular-app
+        ports:
+        - containerPort: 80
+
