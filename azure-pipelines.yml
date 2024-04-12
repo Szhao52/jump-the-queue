@@ -1,6 +1,6 @@
 
 trigger:
-- feature/pipeline
+  master
 
 pool: 
   vmImage: ubuntu-latest
