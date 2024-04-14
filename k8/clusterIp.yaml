@@ -7,3 +7,6 @@ spec:
     ports:
       - targetPort: 30081           
         port: 30081 
+    selector:
+        app: jtq
+        type: frontend
